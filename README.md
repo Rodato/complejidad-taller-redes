@@ -1,6 +1,6 @@
 # Taller de redes — Notaría 2 de Cali
 
-App pedagógica para el curso **Introducción a la Complejidad** (Universidad del Valle, 2026-I), desarrollada por **Daniel Otero** como asistente de **Boris Salazar**.
+App pedagógica diseñada y desarrollada por **Daniel Otero** para el curso **Introducción a la Complejidad** (Universidad del Valle, 2026-I).
 
 ## ¿Qué hace?
 
@@ -71,6 +71,7 @@ Forma parte del **Grupo B (red inmobiliaria)** del curso. Dos grupos paralelos t
 
 ## Créditos
 
-- **Docente titular:** Boris Salazar
-- **Asistente y desarrollo:** Daniel Otero
+- **Autor, diseño pedagógico y desarrollo:** Daniel Otero
+- **Programación en pareja:** Claude (Anthropic)
+- **Chispa inicial:** Boris Salazar — propuso modelar la red con Barabási–Albert; sobre esa semilla Daniel construyó el taller completo de cuatro actos, los cuatro modelos nulos comparados y las dos apps.
 - **Curso:** Introducción a la Complejidad, Departamento de Economía, Universidad del Valle, 2026-I
