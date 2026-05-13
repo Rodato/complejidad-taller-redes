@@ -206,3 +206,23 @@ def guardar_reflexion(row_index: int, payload: dict) -> tuple[bool, Optional[str
 
 def modo_almacenamiento() -> str:
     return "sheets" if _tiene_credenciales_google() else "local"
+
+
+def leer_respuestas() -> tuple[pd.DataFrame, str]:
+    """Devuelve (df, origen) con todas las respuestas registradas.
+
+    Origen ∈ {"sheets", "local"}. Si Sheets falla, cae a local sin lanzar.
+    """
+    if _tiene_credenciales_google():
+        try:
+            ws = _abrir_hoja()
+            valores = ws.get_all_values()
+            if len(valores) <= 1:
+                return pd.DataFrame(columns=COLUMNAS), "sheets"
+            df = pd.DataFrame(valores[1:], columns=valores[0])
+            return df, "sheets"
+        except Exception:
+            pass
+    if ARCHIVO_LOCAL.exists():
+        return pd.read_csv(ARCHIVO_LOCAL, dtype=str, keep_default_na=False, na_filter=False), "local"
+    return pd.DataFrame(columns=COLUMNAS), "local"
