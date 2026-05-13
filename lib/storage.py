@@ -50,8 +50,12 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 
 def _tiene_credenciales_google() -> bool:
+    """True solo si están ambos bloques: gcp_service_account Y sheets."""
     try:
-        return bool(st.secrets.get("gcp_service_account"))
+        return (
+            bool(st.secrets.get("gcp_service_account"))
+            and bool(st.secrets.get("sheets"))
+        )
     except Exception:
         return False
 
@@ -125,8 +129,9 @@ def _actualizar_local(row_index: int, valores_reflexion: list):
     """Sobrescribe las columnas de reflexión en la fila row_index (1-indexed)."""
     if not ARCHIVO_LOCAL.exists():
         return
-    df = pd.read_csv(ARCHIVO_LOCAL)
-    # row_index=2 → primera fila de datos (header es la 1) → pandas idx 0
+    # dtype=str + na_filter=False evita que pandas infiera float64 en las columnas
+    # vacías del Acto 4 — si lo hace, asignar strings ("Parcialmente") falla.
+    df = pd.read_csv(ARCHIVO_LOCAL, dtype=str, keep_default_na=False, na_filter=False)
     idx = row_index - 2
     if idx < 0 or idx >= len(df):
         return
