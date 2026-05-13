@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Secretos locales — NUNCA commitear
+.streamlit/secrets.toml
+
+# JSON de service accounts de Google Cloud
+*-service-account*.json
+complejidad-*.json
+
+# Respuestas en modo local (solo aparecen en desarrollo)
+respuestas_local.csv
