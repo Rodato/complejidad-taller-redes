@@ -553,7 +553,7 @@ else:
 """
     )
 
-    with st.form("reflexion"):
+    with st.form("form_reflexion"):
         st.markdown("##### 1. ¿Tu hipótesis del Acto 2 acertó?")
         acerto = st.radio(
             "acerto",
